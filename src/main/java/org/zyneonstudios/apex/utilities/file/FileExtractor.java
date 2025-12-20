@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.file;
 
-import org.zyneonstudios.apex.utilities.NexusUtilities;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 
@@ -32,7 +32,7 @@ public class FileExtractor {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            NexusUtilities.getLogger().err("[UTILITIES] (FileExtractor) Couldn't unzip file: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (FileExtractor) Couldn't unzip file: "+e.getMessage());
             return false;
         }
     }
@@ -56,7 +56,7 @@ public class FileExtractor {
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
-            NexusUtilities.getLogger().err("[UTILITIES] (FileExtractor) Couldn't extract file(s) from resources: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (FileExtractor) Couldn't extract file(s) from resources: "+e.getMessage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.frame.web;
 
-import org.zyneonstudios.apex.utilities.NexusDesktop;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 import me.friwi.jcefmaven.CefAppBuilder;
 import org.cef.CefApp;
 import org.cef.CefClient;
@@ -16,7 +16,7 @@ import java.awt.*;
 import java.io.File;
 import java.net.URI;
 
-public class NexusWebSetup {
+public class ApexWebSetup {
 
     private boolean setupFinished = false;
 
@@ -26,7 +26,7 @@ public class NexusWebSetup {
     private CefApp webApp = null;
     private CefClient webClient = null;
 
-    public NexusWebSetup(String libraryPath) {
+    public ApexWebSetup(String libraryPath) {
         if(!libraryPath.endsWith("/")&&!libraryPath.endsWith("\\")) {
             libraryPath += "/";
         }
@@ -107,7 +107,7 @@ public class NexusWebSetup {
                 });
                 return true;
             } catch (Exception e) {
-                NexusDesktop.getLogger().err("Failed to finish the web setup: " + e.getMessage());
+                ApexUtilities.getLogger().err("Failed to finish the web setup: " + e.getMessage());
             }
         }
         return false;

@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.sql;
 
-import org.zyneonstudios.apex.utilities.NexusUtilities;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 
 import java.io.File;
 import java.sql.Connection;
@@ -20,11 +20,11 @@ public class SQLite implements SQL {
         File sqlFile = new File(path);
         File folder = sqlFile.getParentFile();
         if(!folder.exists()) {
-            NexusUtilities.getLogger().deb("[UTILITIES] (SQLite) Created sql file path: "+folder.mkdirs());
+            ApexUtilities.getLogger().deb("[UTILITIES] (SQLite) Created sql file path: "+folder.mkdirs());
         }
         if(!sqlFile.exists()) {
             try {
-                NexusUtilities.getLogger().deb("[UTILITIES] (SQLite) Created sql file: " + sqlFile.createNewFile());
+                ApexUtilities.getLogger().deb("[UTILITIES] (SQLite) Created sql file: " + sqlFile.createNewFile());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -43,7 +43,7 @@ public class SQLite implements SQL {
                 throw new RuntimeException("Cannot connect to SQLite database!");
             }
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLite) Can't connect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLite) Can't connect to database: "+e.getMessage());
         } finally {
             disconnect();
         }
@@ -56,7 +56,7 @@ public class SQLite implements SQL {
             connection = DriverManager.getConnection(url);
             return connection != null;
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLite) Can't reconnect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLite) Can't reconnect to database: "+e.getMessage());
             return false;
         }
     }
@@ -71,7 +71,7 @@ public class SQLite implements SQL {
                 throw new RuntimeException("SQL connection ("+path+") is not closed!");
             }
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLite) Can't disconnect from database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLite) Can't disconnect from database: "+e.getMessage());
         }
         return false;
     }

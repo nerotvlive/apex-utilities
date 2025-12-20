@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.storage;
 
-import org.zyneonstudios.apex.utilities.NexusUtilities;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 import org.zyneonstudios.apex.utilities.sql.SQL;
 
 import java.sql.Connection;
@@ -38,7 +38,7 @@ public class SQLStorage implements EditableStorage {
                 }
             }
         } catch (SQLException e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't read from database: " + e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't read from database: " + e.getMessage());
         }
         return null;
     }
@@ -99,7 +99,7 @@ public class SQLStorage implements EditableStorage {
             statement.execute();
             return true;
         } catch (SQLException e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't write to database: " + e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't write to database: " + e.getMessage());
             return false;
         }
     }
@@ -115,7 +115,7 @@ public class SQLStorage implements EditableStorage {
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't delete database entry ("+key+"): " + e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (SQLStorage) Couldn't delete database entry ("+key+"): " + e.getMessage());
             return false;
         }
     }

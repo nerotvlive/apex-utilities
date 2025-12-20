@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.sql;
 
-import org.zyneonstudios.apex.utilities.NexusUtilities;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,7 +36,7 @@ public class MySQL implements SQL {
             }
             return connection != null;
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (MySQL) Can't connect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't connect to database: "+e.getMessage());
             return false;
         }
     }
@@ -47,7 +47,7 @@ public class MySQL implements SQL {
             connection = DriverManager.getConnection(url);
             return connection != null;
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (MySQL) Can't reconnect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't reconnect to database: "+e.getMessage());
             return false;
         }
     }
@@ -62,7 +62,7 @@ public class MySQL implements SQL {
                 throw new RuntimeException("SQL connection ("+path+") is not closed!");
             }
         } catch (Exception e) {
-            NexusUtilities.getLogger().err("[UTILITIES] (MySQL) Can't disconnect from database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't disconnect from database: "+e.getMessage());
         }
         return false;
     }

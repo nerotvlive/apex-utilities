@@ -1,4 +1,4 @@
-package org.zyneonstudios.apex.utilities.frame.nexus;/*
+package org.zyneonstudios.apex.utilities.frame;/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class NexusResizer extends MouseAdapter {
+public class ApexResizer extends MouseAdapter {
     private static final Dimension MINIMUM_SIZE = new Dimension(10, 10);
     private static final Dimension MAXIMUM_SIZE = new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
 
@@ -58,7 +58,7 @@ public class NexusResizer extends MouseAdapter {
      * Convenience contructor. All borders are resizable in increments of a single pixel. Components
      * must be registered separately.
      */
-    public NexusResizer() {
+    public ApexResizer() {
         this(new Insets(5, 5, 5, 5), new Dimension(1, 1));
     }
 
@@ -69,7 +69,7 @@ public class NexusResizer extends MouseAdapter {
      * @param components
      *            components to be automatically registered
      */
-    public NexusResizer(Component... components) {
+    public ApexResizer(Component... components) {
         this(new Insets(5, 5, 5, 5), new Dimension(1, 1), components);
     }
 
@@ -83,7 +83,7 @@ public class NexusResizer extends MouseAdapter {
      * @param components
      *            components to be automatically registered
      */
-    public NexusResizer(Insets dragInsets, Component... components) {
+    public ApexResizer(Insets dragInsets, Component... components) {
         this(dragInsets, new Dimension(1, 1), components);
     }
 
@@ -98,7 +98,7 @@ public class NexusResizer extends MouseAdapter {
      * @param components
      *            components to be automatically registered
      */
-    public NexusResizer(Insets dragInsets, Dimension snapSize, Component... components) {
+    public ApexResizer(Insets dragInsets, Dimension snapSize, Component... components) {
         setDragInsets(dragInsets);
         setSnapSize(snapSize);
         registerComponent(components);

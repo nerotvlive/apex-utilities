@@ -1,6 +1,6 @@
-package org.zyneonstudios.apex.utilities.frame.nexus;
+package org.zyneonstudios.apex.utilities.frame;
 
-import org.zyneonstudios.apex.utilities.NexusDesktop;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 import org.zyneonstudios.apex.utilities.events.AsyncWebFrameConnectorEvent;
 import org.zyneonstudios.apex.utilities.events.WebFrameConnectorEvent;
 import org.zyneonstudios.apex.utilities.frame.web.WebFrame;
@@ -12,16 +12,16 @@ import org.cef.handler.CefFocusHandlerAdapter;
 
 import java.awt.*;
 
-public class NexusWebFrame extends NexusFrame implements WebFrame {
+public class ApexWebFrame extends ApexFrame implements WebFrame {
 
     private final CefBrowser browser;
     private boolean browserFocus;
     private AsyncWebFrameConnectorEvent asyncWebFrameConnectorEvent;
     private WebFrameConnectorEvent webFrameConnectorEvent;
 
-    public NexusWebFrame(CefClient webClient, String url, boolean titlebar, boolean systemStyle) {
+    public ApexWebFrame(CefClient webClient, String url, boolean titlebar, boolean systemStyle) {
         super(systemStyle);
-        setTitle("New NEXUS Web Frame");
+        setTitle("New APEX Web Frame");
         browser = webClient.createBrowser(url, false, false);
         webClient.addFocusHandler(new CefFocusHandlerAdapter() {
             @Override
@@ -59,13 +59,13 @@ public class NexusWebFrame extends NexusFrame implements WebFrame {
                         asyncWebFrameConnectorEvent.execute();
                     }
                 } else if (message.startsWith("[LOG] ")) {
-                    NexusDesktop.getLogger().log(message.replace("[LOG] ","[FRAME] "));
+                    ApexUtilities.getLogger().log(message.replace("[LOG] ","[FRAME] "));
                 } else if (message.startsWith("[ERR] ")) {
-                    NexusDesktop.getLogger().err(message.replace("[ERR] ","[FRAME] "));
+                    ApexUtilities.getLogger().err(message.replace("[ERR] ","[FRAME] "));
                 } else if (message.startsWith("[DEB] ")) {
-                    NexusDesktop.getLogger().dbg(message.replace("[DEB] ","[FRAME] "));
+                    ApexUtilities.getLogger().dbg(message.replace("[DEB] ","[FRAME] "));
                 } else {
-                    NexusDesktop.getLogger().dbg("[FRAME] (Console) "+message);
+                    ApexUtilities.getLogger().dbg("[FRAME] (Console) "+message);
                 }
                 return super.onConsoleMessage(browser, level, message, source, line);
             }

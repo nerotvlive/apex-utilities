@@ -1,6 +1,6 @@
 package org.zyneonstudios.apex.utilities.file;
 
-import org.zyneonstudios.apex.utilities.NexusUtilities;
+import org.zyneonstudios.apex.utilities.ApexUtilities;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,7 +31,7 @@ public class FileGetter {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            NexusUtilities.getLogger().err("[UTILITIES] (FileGetter) Couldn't download file: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (FileGetter) Couldn't download file: "+e.getMessage());
         }
         return null;
     }
@@ -42,7 +42,7 @@ public class FileGetter {
             return new File(class_.getClassLoader().getResource(resourceString).getFile());
         } catch (Exception e) {
             e.printStackTrace();
-            NexusUtilities.getLogger().err("[UTILITIES] (FileGetter) Couldn't get file from resources: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (FileGetter) Couldn't get file from resources: "+e.getMessage());
             return null;
         }
     }

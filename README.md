@@ -13,9 +13,9 @@ You can implement this library via [Maven](#implement-via-maven), [Gradle (Groov
 <repositories>
     <!--Other repositories-->
     <repository>
-      <id>zyneonstudios-repo-releases</id>
-      <name>Zyneon Studios Maven repository</name>
-      <url>https://maven.zyneonstudios.com/releases</url>
+        <id>nerofy-releases</id>
+        <name>Nerofy Network Maven repository</name>
+        <url>https://maven.nrfy.net/releases</url>
     </repository>
 </repositories>
 ```
@@ -23,8 +23,8 @@ You can implement this library via [Maven](#implement-via-maven), [Gradle (Groov
 <dependencies>
     <!--Other dependencies-->
     <dependency>
-        <groupId>com.zyneonstudios.nexus</groupId>
-        <artifactId>base-desktop</artifactId>
+        <groupId>org.zyneonstudios.apex</groupId>
+        <artifactId>utilities</artifactId>
         <version>LATEST</version>
     </dependency>
 </dependencies>
@@ -41,7 +41,7 @@ repositories {
 ```
 ```
 dependencies {
-    implementation 'com.zyneonstudios.nexus:base-desktop:+'
+    implementation 'org.zyneonstudios.apex:utilities:+'
 }
 ```
 
@@ -56,7 +56,7 @@ repositories {
 ```
 ```
 dependencies {
-    implementation('com.zyneonstudios.nexus:base-desktop:+')
+    implementation('org.zyneonstudios.apex:utilities:+')
 }
 ```
 
@@ -65,5 +65,5 @@ dependencies {
 resolvers += "zyneonstudios-repo-releases" at "https://maven.zyneonstudios.com/releases"
 ```
 ```
-libraryDependencies += "com.zyneonstudios.nexus" % "base-desktop" % "LATEST_VERSION"
+libraryDependencies += "org.zyneonstudios.apex" % "utilities" % "LATEST_VERSION"
 ```
