@@ -6,7 +6,7 @@
 
     <groupId>org.zyneonstudios.apex</groupId>
     <artifactId>utilities</artifactId>
-    <version>2025.12</version>
+    <version>2025.12.1</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -19,6 +19,10 @@
             <id>nerofy-releases</id>
             <name>Nerofy Network Maven repository</name>
             <url>https://maven.nrfy.net/releases</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -51,6 +55,24 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.20.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.starxg</groupId>
+            <artifactId>java-keytar</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.steos</groupId>
+            <artifactId>jnafilechooser</artifactId>
+            <version>1.1.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
