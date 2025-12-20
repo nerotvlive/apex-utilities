@@ -1,4 +1,4 @@
-# APEX UTILITIES `2025.12.1`
+# APEX UTILITIES `2025.12.2`
 
 ### Java 21 library designed to simplify the development of Java Desktop apps.<br>
 
