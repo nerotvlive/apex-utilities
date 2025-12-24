@@ -11,7 +11,7 @@ public class ApexUtilities {
 
     private static final ApexLogger logger = new ApexLogger("APEX");
 
-    public static boolean init() {
+    public static boolean initDesktop() {
         logger.dbg("Initializing...");
         try {
             FlatDarkLaf.setup();
