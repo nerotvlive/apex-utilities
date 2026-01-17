@@ -1,114 +1,48 @@
 package org.zyneonstudios.apex.utilities.logger;
 
-import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ApexLogger {
 
-    private boolean showErrors = false;
-    private boolean isLocked = false;
-    private boolean sendDebug = false;
-    private String prefix;
+    private static final String RESET = "\u001B[0m";
+    private static final String BLUE_BRIGHT = "\u001B[94m";
+    private static final String RED = "\u001B[31m";
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private final String loggerName;
+    private boolean debug = false;
 
-    public ApexLogger(String name) {
-        prefix = "[%time%] (%type%) " + name + " | ";
+    public ApexLogger(String loggerName) {
+        this.loggerName = loggerName;
     }
 
-    private String getPrefix() {
-        return prefix.replaceFirst("%time%", new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss").format(Calendar.getInstance().getTime()));
+    public void enableDebugging(boolean debug) {
+        this.debug = debug;
     }
 
-    public void setName(String name, boolean lock) {
-        if (!isLocked) {
-            isLocked = lock;
-            prefix = "%time% | " + name + " | ";
-        }
-    }
-
-    public void enableDebug() {
-        sendDebug = true;
-    }
-
-    public void disableDebug() {
-        sendDebug = false;
-    }
-
-    public boolean isDebugging() {
-        return sendDebug;
+    public void raw(String message) {
+        System.out.println(message);
     }
 
     public void log(String message) {
-        System.out.println(getPrefix().replace("%type%", "LOG") + message);
+        raw("[%s] [%s|LOG] %s".formatted(getTimestamp(), loggerName, message));
     }
 
-    public void dbg(String debugMessage) {
-        if (sendDebug)
-            System.out.println("\u001B[34m" + getPrefix().replace("%type%", "DEB") + debugMessage + "\u001B[0m");
-    }
-
-    public void deb(String debugMessage) {
-        dbg(debugMessage);
-    }
-
-    public void err(String errorMessage) {
-        System.out.println("\u001B[31m" + getPrefix().replace("%type%", "ERR") + errorMessage + "\u001B[0m");
-        if (showErrors) {
-            JOptionPane.showMessageDialog(null, errorMessage,
-                    "NEXUS App (Error)", JOptionPane.ERROR_MESSAGE);
+    public void deb(String message) {
+        if (debug) {
+            raw("\u001B[94m[%s] [%s|DEB] %s\u001B[0m".formatted(getTimestamp(), loggerName, message));
         }
     }
 
-    public void err(String errorMessage, boolean showError) {
-        System.out.println("\u001B[31m" + getPrefix().replace("%type%", "ERR") + errorMessage + "\u001B[0m");
-        if (showError) {
-            JOptionPane.showMessageDialog(null, errorMessage,
-                    "NEXUS App (Error)", JOptionPane.ERROR_MESSAGE);
-        }
+    public void err(String message) {
+        System.err.printf("\u001B[31m[%s] [%s|ERR] %s\u001B[0m%n", getTimestamp(), loggerName, message);
     }
 
-    public void printErr(String prefix, String type, String message, String reason, StackTraceElement[] cause, String... possibleFixes) {
-        StringBuilder output = new StringBuilder();
-        if(message!=null) {
-            if(prefix == null) {
-                prefix = "AN ERROR OCCURRED";
-            }
-            if(type == null) {
-                type = "ERROR";
-            }
-            String s1 = "===("+prefix+")===============================================================/"+type+"/===";
-            output.append(s1).append("\n");
-            err(s1,false);
-            output.append(message).append("\n");
-            err(message,false);
-            if(reason!=null) {
-                output.append("Reason: ").append(reason).append("\n");
-                err("Reason: "+reason,false);
-            }
-            if(possibleFixes!=null) {
-                String p = "Possible fix(es): ";
-                for(String fix:possibleFixes) {
-                    output.append(p).append(fix).append("\n");
-                    err(p+fix,false);
-                    p = "";
-                }
-            }
-            if(cause!=null) {
-                output.append("\nCaused by:\n");
-                err(" ",false);
-                err("Caused by:",false);
-                for(StackTraceElement element:cause) {
-                    output.append(" ").append(element.toString()).append("\n");
-                    err(" "+element.toString(),false);
-                }
-            }
-            String s2 = "===/"+type+"/===============================================================("+prefix+")===";
-            output.append(s2).append("\n");
-            err(s2,false);
-        }
-        if (showErrors) {
-            JOptionPane.showMessageDialog(null, output.toString(),
-                    "NEXUS App (Error)", JOptionPane.ERROR_MESSAGE);
-        }
+    public String getLoggerName() {
+        return loggerName;
+    }
+
+    private String getTimestamp() {
+        return LocalTime.now().format(TIME_FORMATTER);
     }
 }

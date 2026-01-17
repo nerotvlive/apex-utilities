@@ -6,7 +6,7 @@
 
     <groupId>org.zyneonstudios.apex</groupId>
     <artifactId>utilities</artifactId>
-    <version>2.25.0-SNAPSHOT.2</version>
+    <version>2.25.0-SNAPSHOT.3</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -14,65 +14,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>nerofy-releases</id>
-            <name>Nerofy Network Maven repository</name>
-            <url>https://maven.nrfy.net/releases</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>3.7</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.friwi</groupId>
-            <artifactId>jcefmaven</artifactId>
-            <version>141.0.10</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna-platform</artifactId>
-            <version>5.18.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-compress</artifactId>
-            <version>1.28.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.20.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.5.9</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.starxg</groupId>
-            <artifactId>java-keytar</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.steos</groupId>
-            <artifactId>jnafilechooser</artifactId>
-            <version>1.1.2</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.60</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

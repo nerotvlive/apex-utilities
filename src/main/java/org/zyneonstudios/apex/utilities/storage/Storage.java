@@ -2,21 +2,11 @@ package org.zyneonstudios.apex.utilities.storage;
 
 public interface Storage {
 
-    Object get(String path);
-
-    boolean has(String path);
-
-    String getString(String path);
-
-    Integer getInteger(String path);
-
-    int getInt(String path);
-
-    Double getDouble(String path);
-
-    double getDoub(String path);
-
-    Boolean getBoolean(String path);
-
-    boolean getBool(String path);
+    boolean has(String key);
+    Object get(String key);
+    String getString(String key);
+    Integer getInteger(String key);
+    Long getLong(String key);
+    Double getDouble(String key);
+    Boolean getBoolean(String key);
 }

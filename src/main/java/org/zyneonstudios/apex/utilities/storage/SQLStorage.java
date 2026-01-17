@@ -54,36 +54,20 @@ public class SQLStorage implements EditableStorage {
     }
 
     @Override
-    public int getInt(String path) {
-        return getInteger(path);
+    public Long getLong(String key) {
+        return Long.parseLong(getString(key));
     }
+
 
     @Override
     public Double getDouble(String path) {
         return Double.parseDouble(getString(path));
     }
 
-    @Override
-    public double getDoub(String path) {
-        return getDouble(path);
-    }
 
     @Override
     public Boolean getBoolean(String path) {
-        return Boolean.parseBoolean(getString(path).toLowerCase());
-    }
-
-    @Override
-    public boolean getBool(String path) {
         return getBoolean(path);
-    }
-
-    @Override
-    public boolean ensure(String key, Object value) {
-        if(!has(key)) {
-            return set(key, value);
-        }
-        return true;
     }
 
     @Override
@@ -105,7 +89,32 @@ public class SQLStorage implements EditableStorage {
     }
 
     @Override
-    public boolean delete(String key) {
+    public boolean setString(String key, String value) {
+        return set(key,value);
+    }
+
+    @Override
+    public boolean setDouble(String key, double value) {
+        return set(key,value);
+    }
+
+    @Override
+    public boolean setLong(String key, long value) {
+        return set(key,value);
+    }
+
+    @Override
+    public boolean setInteger(String key, int value) {
+        return set(key,value);
+    }
+
+    @Override
+    public boolean setBoolean(String key, boolean value) {
+        return set(key,value);
+    }
+
+    @Override
+    public boolean remove(String key) {
         sql.disconnect();
         sql.connect();
         String query = "DELETE FROM `"+table+"` WHERE `key` = ?";

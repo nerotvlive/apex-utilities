@@ -1,6 +1,6 @@
-# APEX UTILITIES `2025.12.2`
+# APEX UTILITIES
 
-### Java 21 library designed to simplify the development of Java Desktop apps.<br>
+### Java 25 library designed to simplify the development of Java Desktop apps.<br>
 
 ---
 
