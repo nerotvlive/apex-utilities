@@ -1,8 +1,11 @@
 package org.zyneonstudios.apex.utilities.misc;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.security.Key;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,6 +18,9 @@ public final class StringUtility {
     private static final String ALPHANUMERIC = ALPHABETIC + NUMERIC;
     private static final String SYMBOLS = "!@#$%^&*()-=_+,./<>?;':\"\\{}|";
     private static final String ALL_CHARS = ALPHANUMERIC + SYMBOLS;
+
+    private static final String ALGORITHM = "AES";
+    private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
 
     private StringUtility() {
         throw new UnsupportedOperationException("Utility class");
@@ -131,5 +137,20 @@ public final class StringUtility {
         }
 
         return stringBuilder.toString();
+    }
+
+    public static byte[] encryptAES(byte[] key, byte[] data) throws Exception {
+        Key secretKey = new SecretKeySpec(key, ALGORITHM);
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        return Base64.getEncoder().encode(cipher.doFinal(data));
+    }
+
+    public static byte[] decryptAES(byte[] key, byte[] encryptedData) throws Exception {
+        encryptedData = Base64.getDecoder().decode(encryptedData);
+        Key secretKey = new SecretKeySpec(key, ALGORITHM);
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        return cipher.doFinal(encryptedData);
     }
 }
