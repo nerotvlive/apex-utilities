@@ -19,4 +19,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>nerofy-snapshots</id>
+            <name>Nerofy Network Maven repository</name>
+            <url>https://maven.nrfy.net/snapshots</url>
+        </repository>
+    </distributionManagement>
+
 </project>
