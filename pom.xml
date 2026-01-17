@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>nexus-utilities-base</module>
-        <module>nexus-utilities-desktop</module>
+        <module>base-utilities</module>
+        <module>desktop-utilities</module>
         <module>utilities</module>
     </modules>
 
