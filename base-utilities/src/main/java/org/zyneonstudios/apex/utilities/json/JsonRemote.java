@@ -17,15 +17,19 @@ public class JsonRemote implements JsonData {
     }
 
     public JsonRemote(URI uri) {
-        this.url = uri.toString();
+        this(uri.toString());
     }
 
     public JsonRemote(URL url) {
-        this.url = url.toString();
+        this(url.toString());
     }
 
     public JsonRemote(File file) {
-        this(file.toURI());
+        this("file://"+file.getAbsolutePath().replace("\\","/").replace("0","%20"));
+    }
+
+    public JsonRemote(JsonFile jsonFile) {
+        this(jsonFile.getFile());
     }
 
     @Override

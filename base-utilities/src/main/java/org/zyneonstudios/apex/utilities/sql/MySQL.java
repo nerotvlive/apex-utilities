@@ -14,6 +14,7 @@ public class MySQL implements SQL {
 
     private final String hostname;
     private final String username;
+    private final String password;
     private final String database;
     private final int port;
     private final boolean ssl;
@@ -21,22 +22,23 @@ public class MySQL implements SQL {
     public MySQL(String hostname, String username, String password, String database, int port, boolean ssl) {
         this.hostname = hostname;
         this.username = username;
+        this.password = password;
         this.database = database;
         this.port = port;
         this.ssl = ssl;
-        url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?user="+username+"&password="+password+"&useSSL="+ssl;
-        path = username+"@"+hostname+":"+port;
+        url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=" + ssl;
+        path = username + "@" + hostname + ":" + port;
     }
 
     @Override
     public boolean connect() {
         try {
             if (connection == null) {
-                connection = DriverManager.getConnection(url);
+                connection = DriverManager.getConnection(url, username, password);
             }
             return connection != null;
         } catch (Exception e) {
-            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't connect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't connect to database: " + e.getMessage());
             return false;
         }
     }
@@ -44,10 +46,10 @@ public class MySQL implements SQL {
     @Override
     public boolean reconnect() {
         try {
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(url, username, password);
             return connection != null;
         } catch (Exception e) {
-            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't reconnect to database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't reconnect to database: " + e.getMessage());
             return false;
         }
     }
@@ -56,13 +58,13 @@ public class MySQL implements SQL {
     public boolean disconnect() {
         try {
             connection.close();
-            if(connection.isClosed()) {
+            if (connection.isClosed()) {
                 connection = null;
             } else {
-                throw new RuntimeException("SQL connection ("+path+") is not closed!");
+                throw new RuntimeException("SQL connection (" + path + ") is not closed!");
             }
         } catch (Exception e) {
-            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't disconnect from database: "+e.getMessage());
+            ApexUtilities.getLogger().err("[UTILITIES] (MySQL) Can't disconnect from database: " + e.getMessage());
         }
         return false;
     }
@@ -74,7 +76,7 @@ public class MySQL implements SQL {
 
     @Override
     public boolean execute(String statement) {
-        if(connect()) {
+        if (connect()) {
             try {
                 PreparedStatement prepStatement = getConnection().prepareStatement(statement);
                 prepStatement.execute();
@@ -85,7 +87,7 @@ public class MySQL implements SQL {
     }
 
     public String getUrl() {
-        return "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?user="+username+"&password=***&useSSL="+ssl;
+        return "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=" + ssl;
     }
 
     public String getHostname() {
