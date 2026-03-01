@@ -5,7 +5,23 @@ import org.zyneonstudios.apex.utilities.json.EditableJsonData;
 
 public class JsonStorage extends LocalStorage implements EditableJsonData {
 
-    private final JSONObject data = new JSONObject();
+    private final JSONObject data;
+
+    public JsonStorage() {
+        data = new JSONObject();
+    }
+
+    public JsonStorage(JSONObject data) {
+        this.data = data;
+    }
+
+    public JsonStorage(String json) {
+        data = JSONObject.parseObject(json);
+    }
+
+    public JsonStorage(EditableJsonData data) {
+        this.data = data.getData();
+    }
 
     @Override
     public boolean set(String key, Object value) {
