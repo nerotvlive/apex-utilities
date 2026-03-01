@@ -11,9 +11,23 @@ public class JsonRemote implements JsonData {
     private final String url;
     private JSONObject data;
 
-    public JsonRemote(String url) {
-        this.url = url;
-        this.data = JsonUtility.getObjectFromUrl(url);
+    public JsonRemote(String data_or_url) {
+        if(data_or_url.startsWith("http:/") || data_or_url.startsWith("https:/") || data_or_url.startsWith("file:/")) {
+            this.url = data_or_url;
+            this.data = JsonUtility.getObjectFromUrl(url);
+        } else {
+            this.url = null;
+            this.data = JSONObject.parseObject(data_or_url);
+        }
+    }
+
+    public JsonRemote(JSONObject data) {
+        this.url = null;
+        this.data = data;
+    }
+
+    public JsonRemote(JsonData data) {
+        this(data.getData());
     }
 
     public JsonRemote(URI uri) {
